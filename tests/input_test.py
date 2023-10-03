@@ -3,6 +3,7 @@ import os
 import pytest
 import time
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from pages.input_page import InputLocators
@@ -13,7 +14,9 @@ from dotenv import load_dotenv
 @pytest.fixture()
 def driver():
     # install chromedriver
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    options = Options()
+    options.add_argument('--headless')
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
     # add implicit wait. It will wait 10 seconds for an element before throwing an error
     driver.implicitly_wait(10)
     yield driver
