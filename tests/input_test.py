@@ -13,9 +13,11 @@ from dotenv import load_dotenv
 
 @pytest.fixture()
 def driver():
+    load_dotenv()
     # install chromedriver
     options = Options()
-    options.add_argument('--headless')
+    if os.getenv('HEADLESS') == "Y":
+        options.add_argument('--headless')
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
     # add implicit wait. It will wait 10 seconds for an element before throwing an error
     driver.implicitly_wait(10)
