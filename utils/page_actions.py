@@ -15,3 +15,14 @@ class PageActions:
     def input_text(self, by, element, text):
         self.driver.find_element(by, element).send_keys(text)
 
+    def get_value(self, by, element):
+        return self.driver.find_element(by, element).get_attribute('value')
+
+    def clear_text(self, by, element):
+        self.driver.find_element(by, element).clear()
+
+    def check_enabled(self, by, element):
+        return self.driver.find_element(by, element).is_enabled()
+
+    def check_readonly(self, by, element):
+        return self.driver.find_element(by, element).get_attribute('value')
