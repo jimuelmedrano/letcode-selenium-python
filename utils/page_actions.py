@@ -1,5 +1,6 @@
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.select import Select
 
 
 class PageActions:
@@ -7,10 +8,13 @@ class PageActions:
     def open_page(self, url):
         self.driver.get(url)
 
+    def get_element(self, by, element):
+        return self.driver.find_element(by, element)
+
     def click(self, by, element):
         self.driver.find_element(by, element).click()
 
-    def clickAndHold(self, by, element):
+    def click_and_hold(self, by, element):
         elm = self.driver.find_element(by, element)
         # create action chain object
         action = ActionChains(self.driver)
@@ -27,6 +31,9 @@ class PageActions:
     def get_value(self, by, element):
         return self.driver.find_element(by, element).get_attribute('value')
 
+    def get_text(self, by, element):
+        return self.driver.find_element(by, element).text
+
     def clear_text(self, by, element):
         self.driver.find_element(by, element).clear()
 
@@ -39,11 +46,26 @@ class PageActions:
     def back(self):
         self.driver.back()
 
-    def getLocation(self, by, element):
+    def get_location(self, by, element):
         return self.driver.find_element(by, element).location
 
-    def getSize(self, by, element):
+    def get_size(self, by, element):
         return self.driver.find_element(by, element).size
 
-    def getCssValue(self, by, element, css):
+    def get_css_value(self, by, element, css):
         return self.driver.find_element(by, element).value_of_css_property(css)
+
+    def select_by_visible_text(self, by, element, text):
+        select = Select(self.driver.find_element(by, element))
+        select.select_by_visible_text(text)
+
+    def select_by_index(self, by, element, index):
+        select = Select(self.driver.find_element(by, element))
+        select.select_by_index(index)
+
+    def select_by_value(self, by, element, value):
+        select = Select(self.driver.find_element(by, element))
+        select.select_by_value(value)
+
+    def get_select(self, by, element):
+        return Select(self.driver.find_element(by, element))
