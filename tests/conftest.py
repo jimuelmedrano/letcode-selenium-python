@@ -12,10 +12,12 @@ from dotenv import load_dotenv
 def setup(request):
     load_dotenv()
 
-    # Set headless mode
+    # Add arguments
     options = Options()
     if os.getenv('HEADLESS') == "Y":
         options.add_argument('--headless')
+    else:
+        options.add_argument("--start-maximized")
 
     # Install chromedriver
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)

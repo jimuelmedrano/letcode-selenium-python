@@ -19,17 +19,17 @@ class TestButton(PageActions):
 
     def test_button_location(self):
         # Print button location
-        elm_location = self.getLocation(*ButtonLocators.location_button)
+        elm_location = self.get_location(*ButtonLocators.location_button)
         print("Button Location: ", elm_location)
 
     def test_button_color(self):
         # Print button color
-        elm_color = self.getCssValue(*ButtonLocators.color_button, 'background-color')
+        elm_color = self.get_css_value(*ButtonLocators.color_button, 'background-color')
         print("Button Color: ", elm_color)
 
     def test_button_size(self):
         # Print button size
-        elm_size = self.getSize(*ButtonLocators.size_button)
+        elm_size = self.get_size(*ButtonLocators.size_button)
         print("Button Size: ", elm_size)
 
     def test_button_disabled(self):
@@ -41,5 +41,5 @@ class TestButton(PageActions):
 
     def test_button_hold(self):
         # Click and hold button
-        self.clickAndHold(*ButtonLocators.hold_button)
+        self.click_and_hold(*ButtonLocators.hold_button)
         time.sleep(2)
