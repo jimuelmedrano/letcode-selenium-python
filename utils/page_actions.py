@@ -1,4 +1,5 @@
 from selenium.webdriver import ActionChains
+from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
@@ -69,3 +70,6 @@ class PageActions:
 
     def get_select(self, by, element):
         return Select(self.driver.find_element(by, element))
+
+    def get_alert(self):
+        return self.driver.switch_to.alert
