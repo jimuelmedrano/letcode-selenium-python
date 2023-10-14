@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 
 class TestAlert(PageActions):
 
+    # Using pytest fixture with funtion as scope will run at the start of each test
     @pytest.fixture(autouse=True, scope='function')
     def open_alert_page(self):
         load_dotenv()

@@ -12,6 +12,10 @@ class PageActions:
     def get_element(self, by, element):
         return self.driver.find_element(by, element)
 
+    def scroll_to_element(self, by, element):
+        elm = self.driver.find_element(by, element)
+        self.driver.execute_script("arguments[0].scrollIntoView();", elm)
+
     def click(self, by, element):
         self.driver.find_element(by, element).click()
 
@@ -78,6 +82,19 @@ class PageActions:
         elm = self.driver.find_element(by, element)
         self.driver.switch_to.frame(elm)
 
-    def scroll_to_element(self, by, element):
-        elm = self.driver.find_element(by, element)
-        self.driver.execute_script("arguments[0].scrollIntoView();", elm)
+    def get_window_title(self):
+        return self.driver.title
+
+    def get_window_handle(self):
+        return self.driver.current_window_handle
+
+    def print_window_handles(self):
+        for window_handle in self.driver.window_handles:
+            self.driver.switch_to.window(window_handle)
+            print(self.driver.title)
+
+    def switch_window(self, original_window_handle):
+        for window_handle in self.driver.window_handles:
+            if window_handle != original_window_handle:
+                self.driver.switch_to.window(window_handle)
+                break
