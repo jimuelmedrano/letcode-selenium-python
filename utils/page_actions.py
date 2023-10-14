@@ -73,3 +73,11 @@ class PageActions:
 
     def get_alert(self):
         return self.driver.switch_to.alert
+
+    def switch_frame(self, by, element):
+        elm = self.driver.find_element(by, element)
+        self.driver.switch_to.frame(elm)
+
+    def scroll_to_element(self, by, element):
+        elm = self.driver.find_element(by, element)
+        self.driver.execute_script("arguments[0].scrollIntoView();", elm)
