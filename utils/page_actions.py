@@ -98,3 +98,9 @@ class PageActions:
             if window_handle != original_window_handle:
                 self.driver.switch_to.window(window_handle)
                 break
+
+    def drag_drop(self, by, draggable, droppable):
+        source = self.driver.find_element(by, draggable)
+        target = self.driver.find_element(by, droppable)
+        actions2 = ActionChains(self.driver)
+        actions2.drag_and_drop(source, target).perform()
